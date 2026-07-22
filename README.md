@@ -1,159 +1,260 @@
-# Turborepo starter
+# 🌸 The Flover
 
-This Turborepo starter is maintained by the Turborepo core team.
+The Flover is a modern flower shop management system built with a Turborepo monorepo architecture.
 
-## Using this example
+## Tech Stack
 
-Run the following command:
+### Frontend
 
-```sh
-npx create-turbo@latest
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### Backend
+
+- NestJS
+- Prisma ORM
+- PostgreSQL (Neon)
+
+### Monorepo
+
+- Turborepo
+- pnpm
+
+---
+
+# Project Structure
+
+```text
+.
+├── apps/
+│   ├── web
+│   └── api
+│
+├── packages/
+│   ├── prisma
+│   ├── ui
+│   ├── constants
+│   ├── api-types
+│   ├── types
+│   ├── utils
+│   ├── eslint-config
+│   └── typescript-config
+│
+├── .env
+├── package.json
+└── turbo.json
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+# Requirements
 
-### Apps and Packages
+- Node.js 26+
+- pnpm 11+
+- PostgreSQL (Neon)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+# Installation
 
-### Utilities
+Install dependencies
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+pnpm install
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+# Environment Variables
+
+Create a root `.env`
+
+```env
+DATABASE_URL="your_neon_database_url"
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+# Database
 
-```sh
-turbo build --filter=docs
+The Prisma package is located at:
+
+```text
+packages/prisma
 ```
 
-Without global `turbo`:
+## 1. Generate schema.prisma
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+This combines all Prisma models and enums into a single `schema.prisma`.
+
+```bash
+pnpm --filter @repo/prisma build:schema
 ```
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
+## 2. Generate Prisma Client
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
+```bash
+pnpm --filter @repo/prisma generate
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
+## 3. Push schema to Neon
+
+(No migrations)
+
+```bash
+pnpm --filter @repo/prisma push
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## 4. Seed database
 
-```sh
-turbo dev --filter=web
+```bash
+pnpm --filter @repo/prisma seed
 ```
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+## Run everything from scratch
+
+```bash
+pnpm --filter @repo/prisma db:setup
 ```
 
-### Remote Caching
+This command performs:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+1. Build Prisma schema
+2. Generate Prisma Client
+3. Push schema to Neon
+4. Seed initial data
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+---
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## Reset database
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
+```bash
+pnpm --filter @repo/prisma reset
 ```
 
-Without global `turbo`, use your package manager:
+This command will:
 
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
+- Drop all tables
+- Recreate database schema
+- Seed all master data
+
+---
+
+# Development
+
+Run every application
+
+```bash
+pnpm dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Run a specific application
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
+```bash
+pnpm --filter web dev
 ```
 
-Without global `turbo`:
+or
 
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
+```bash
+pnpm --filter api dev
 ```
 
-## Useful Links
+---
 
-Learn more about the power of Turborepo:
+# Build
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+Build every package
+
+```bash
+pnpm build
+```
+
+---
+
+# Lint
+
+```bash
+pnpm lint
+```
+
+---
+
+# Format
+
+```bash
+pnpm format
+```
+
+---
+
+# Type Check
+
+```bash
+pnpm check-types
+```
+
+---
+
+# Prisma Folder
+
+```text
+packages/prisma
+│
+├── src/
+│   ├── enums/
+│   ├── models/
+│   └── seeds/
+│
+├── generated/
+│
+├── build-schema.ts
+├── client.ts
+├── prisma.config.ts
+├── schema.prisma
+└── package.json
+```
+
+---
+
+# Development Workflow
+
+Whenever the Prisma schema changes:
+
+```bash
+pnpm --filter @repo/prisma generate
+```
+
+Whenever new tables are added:
+
+```bash
+pnpm --filter @repo/prisma push
+```
+
+Whenever seed data changes:
+
+```bash
+pnpm --filter @repo/prisma seed
+```
+
+Or simply run:
+
+```bash
+pnpm --filter @repo/prisma db:setup
+```
+
+---
+
+# License
+
+MIT
