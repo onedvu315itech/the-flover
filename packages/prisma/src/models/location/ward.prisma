@@ -1,0 +1,25 @@
+model Ward {
+  id          String @id @default(uuid())
+
+  provinceId  String
+
+  code        String
+  name        String
+
+  isActive    Boolean @default(true)
+
+  province    Province @relation(fields: [provinceId], references: [id])
+
+  userAddresses UserAddress[]
+  recipients   Recipient[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([provinceId, code])
+
+  @@index([provinceId])
+  @@index([isActive])
+
+  @@map("wards")
+}

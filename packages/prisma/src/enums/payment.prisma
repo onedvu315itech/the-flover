@@ -1,0 +1,34 @@
+enum PaymentTiming {
+  PREPAID
+  PAY_ON_DELIVERY
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIALLY_PAID
+  PAID
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentInstrument {
+  CASH
+  BANK_TRANSFER
+  VNPAY
+  MOMO
+}
+
+enum TransactionType {
+  PAYMENT
+  DEPOSIT
+  REFUND
+  ADJUSTMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "categorySlug": "birthday",
+    "name": "Pink Dream Bouquet",
+    "slug": "pink-dream-bouquet",
+    "shortDescription": "Elegant pink bouquet for birthdays.",
+    "description": "A lovely bouquet featuring soft pink flowers and premium wrapping.",
+    "startingPrice": 500000,
+    "referencePrice": 650000,
+    "coverImage": "/images/designs/pink-dream.jpg",
+    "isFeatured": true,
+    "tags": [
+      "pink",
+      "birthday",
+      "korean"
+    ]
+  },
+  {
+    "categorySlug": "love",
+    "name": "Forever Rose",
+    "slug": "forever-rose",
+    "shortDescription": "Classic romantic bouquet.",
+    "description": "Red roses with elegant wrapping for your loved one.",
+    "startingPrice": 800000,
+    "referencePrice": 950000,
+    "coverImage": "/images/designs/forever-rose.jpg",
+    "isFeatured": true,
+    "tags": [
+      "rose",
+      "luxury",
+      "love"
+    ]
+  },
+  {
+    "categorySlug": "graduation",
+    "name": "Graduation Sunshine",
+    "slug": "graduation-sunshine",
+    "shortDescription": "Bright bouquet for graduation.",
+    "description": "Yellow flowers symbolizing success and happiness.",
+    "startingPrice": 650000,
+    "referencePrice": 750000,
+    "coverImage": "/images/designs/graduation-sunshine.jpg",
+    "isFeatured": false,
+    "tags": [
+      "graduation",
+      "yellow",
+      "minimalist"
+    ]
+  }
+]

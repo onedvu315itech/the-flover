@@ -1,0 +1,35 @@
+model Design {
+  id                  String @id @default(uuid())
+
+  categoryId          String
+
+  name                String
+  slug                String @unique
+
+  shortDescription    String?
+  description         String?
+
+  startingPrice       Decimal @db.Decimal(18, 2)
+  referencePrice      Decimal? @db.Decimal(18, 2)
+
+  coverImage          String?
+
+  isPurchasable       Boolean @default(true)
+  isFeatured          Boolean @default(false)
+  isActive            Boolean @default(true)
+
+  category            Category @relation(fields: [categoryId], references: [id])
+
+  images              DesignImage[]
+  tags                DesignTag[]
+  orders              Order[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([isFeatured])
+  @@index([isActive])
+
+  @@map("designs")
+}

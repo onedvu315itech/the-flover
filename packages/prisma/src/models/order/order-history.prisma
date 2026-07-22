@@ -1,0 +1,22 @@
+model OrderHistory {
+  id                String @id @default(uuid())
+
+  orderId           String
+
+  status            OrderStatus
+
+  changedByUserId   String
+
+  note              String?
+
+  order             Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  changedBy         User @relation("OrderHistoryChangedBy", fields: [changedByUserId], references: [id])
+
+  createdAt         DateTime @default(now())
+
+  @@index([orderId])
+  @@index([changedByUserId])
+
+  @@map("order_histories")
+}

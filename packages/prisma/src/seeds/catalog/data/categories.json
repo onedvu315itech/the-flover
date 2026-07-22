@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Birthday",
+    "slug": "birthday",
+    "description": "Birthday flower designs",
+    "displayOrder": 1
+  },
+  {
+    "name": "Love",
+    "slug": "love",
+    "description": "Romantic flower designs",
+    "displayOrder": 2
+  },
+  {
+    "name": "Graduation",
+    "slug": "graduation",
+    "description": "Graduation flower designs",
+    "displayOrder": 3
+  },
+  {
+    "name": "Grand Opening",
+    "slug": "grand-opening",
+    "description": "Grand opening flower stands",
+    "displayOrder": 4
+  },
+  {
+    "name": "Condolence",
+    "slug": "condolence",
+    "description": "Sympathy flower arrangements",
+    "displayOrder": 5
+  },
+  {
+    "name": "Wedding",
+    "slug": "wedding",
+    "description": "Wedding flower designs",
+    "displayOrder": 6
+  }
+]

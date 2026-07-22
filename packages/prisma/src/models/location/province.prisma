@@ -1,0 +1,17 @@
+model Province {
+  id          String @id @default(uuid())
+
+  code        String @unique
+  name        String
+
+  isActive    Boolean @default(true)
+
+  wards       Ward[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive])
+
+  @@map("provinces")
+}

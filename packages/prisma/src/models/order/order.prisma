@@ -1,0 +1,53 @@
+model Order {
+  id                  String @id @default(uuid())
+
+  orderNo             String @unique
+
+  userId              String?
+
+  designId            String?
+
+  source              OrderSource
+
+  status              OrderStatus @default(DRAFT)
+
+  subtotalAmount      Decimal @db.Decimal(18, 2)
+  taxAmount           Decimal @default(0) @db.Decimal(18, 2)
+  discountAmount      Decimal @default(0) @db.Decimal(18, 2)
+  deliveryFee         Decimal @default(0) @db.Decimal(18, 2)
+  totalAmount         Decimal @db.Decimal(18, 2)
+
+  deliveryDate        DateTime?
+  deliveryTimeSlot    DeliveryTimeSlot?
+  deliveryTimeNote    String?
+
+  description         String?
+  customerNote        String?
+  internalNote        String?
+
+  cancelledReason     CancelledReason?
+
+  createdByUserId     String?
+
+  user                User? @relation("CustomerOrders", fields: [userId], references: [id], onDelete: SetNull)
+  design              Design? @relation(fields: [designId], references: [id], onDelete: SetNull)
+
+  createdBy           User? @relation("CreatedOrders", fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  recipient           Recipient?
+
+  payment             Payment?
+
+  histories           OrderHistory[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([orderNo])
+  @@index([userId])
+  @@index([designId])
+  @@index([status])
+  @@index([createdByUserId])
+
+  @@map("orders")
+}

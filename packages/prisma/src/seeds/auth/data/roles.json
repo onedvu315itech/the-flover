@@ -1,0 +1,14 @@
+[
+  {
+    "name": "ADMIN",
+    "description": "System administrator"
+  },
+  {
+    "name": "MANAGER",
+    "description": "Store manager"
+  },
+  {
+    "name": "CUSTOMER",
+    "description": "Registered customer"
+  }
+]

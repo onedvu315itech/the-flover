@@ -1,0 +1,7 @@
+enum TagType {
+  COLOR
+  STYLE
+  OCCASION
+  FLOWER
+  ACCESSORY
+}

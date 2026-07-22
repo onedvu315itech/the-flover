@@ -1,0 +1,43 @@
+model User {
+  id               String @id @default(uuid())
+
+  roleId           String
+
+  fullName         String
+
+  email            String? @unique
+  emailVerifiedAt  DateTime?
+
+  phone            String? @unique
+  phoneVerifiedAt  DateTime?
+
+  passwordHash     String?
+
+  avatarUrl        String?
+
+  status           UserStatus @default(ACTIVE)
+
+  lastLoginAt      DateTime?
+
+  role                   Role @relation(fields: [roleId], references: [id])
+
+  accounts               Account[]
+  sessions               Session[]
+
+  addresses              UserAddress[]
+
+  orders                 Order[] @relation("CustomerOrders")
+
+  createdOrders          Order[] @relation("CreatedOrders")
+
+  orderHistories         OrderHistory[] @relation("OrderHistoryChangedBy")
+
+  confirmedTransactions  Transaction[] @relation("ConfirmedTransactions")
+
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@index([roleId])
+
+  @@map("users")
+}

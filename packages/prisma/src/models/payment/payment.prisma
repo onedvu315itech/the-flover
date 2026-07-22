@@ -1,0 +1,23 @@
+model Payment {
+  id                String @id @default(uuid())
+
+  orderId           String @unique
+
+  paymentTiming     PaymentTiming
+
+  status            PaymentStatus @default(PENDING)
+
+  paidAmount        Decimal @default(0) @db.Decimal(18, 2)
+  remainingAmount   Decimal @db.Decimal(18, 2)
+
+  order             Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  transactions      Transaction[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([status])
+
+  @@map("payments")
+}

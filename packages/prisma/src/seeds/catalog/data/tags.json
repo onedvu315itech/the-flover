@@ -1,0 +1,62 @@
+[
+  {
+    "type": "COLOR",
+    "name": "Pink",
+    "slug": "pink"
+  },
+  {
+    "type": "COLOR",
+    "name": "White",
+    "slug": "white"
+  },
+  {
+    "type": "COLOR",
+    "name": "Purple",
+    "slug": "purple"
+  },
+  {
+    "type": "STYLE",
+    "name": "Korean",
+    "slug": "korean"
+  },
+  {
+    "type": "STYLE",
+    "name": "Luxury",
+    "slug": "luxury"
+  },
+  {
+    "type": "STYLE",
+    "name": "Minimalist",
+    "slug": "minimalist"
+  },
+  {
+    "type": "OCCASION",
+    "name": "Birthday",
+    "slug": "birthday"
+  },
+  {
+    "type": "OCCASION",
+    "name": "Wedding",
+    "slug": "wedding"
+  },
+  {
+    "type": "FLOWER",
+    "name": "Rose",
+    "slug": "rose"
+  },
+  {
+    "type": "FLOWER",
+    "name": "Tulip",
+    "slug": "tulip"
+  },
+  {
+    "type": "ACCESSORY",
+    "name": "Ribbon",
+    "slug": "ribbon"
+  },
+  {
+    "type": "ACCESSORY",
+    "name": "Teddy Bear",
+    "slug": "teddy-bear"
+  }
+]

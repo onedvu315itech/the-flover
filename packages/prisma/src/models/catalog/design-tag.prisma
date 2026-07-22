@@ -1,0 +1,15 @@
+model DesignTag {
+  designId        String
+  tagId           String
+
+  design          Design @relation(fields: [designId], references: [id], onDelete: Cascade)
+  tag             Tag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+
+  @@id([designId, tagId])
+
+  @@index([tagId])
+
+  @@map("design_tags")
+}

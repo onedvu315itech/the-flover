@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@repo/ui/*": [
+        "./packages/ui/*"
+      ],
+      "@repo/types/*": [
+        "./packages/types/*"
+      ],
+      "@repo/utils/*": [
+        "./packages/utils/*"
+      ],
+      "@repo/prisma/*": [
+        "./packages/prisma/*"
+      ]
+    }
+  }
+}

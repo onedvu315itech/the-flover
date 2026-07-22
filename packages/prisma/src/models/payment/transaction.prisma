@@ -1,0 +1,35 @@
+model Transaction {
+  id                    String @id @default(uuid())
+
+  paymentId             String
+
+  type                  TransactionType
+
+  instrument            PaymentInstrument
+
+  provider              String?
+
+  amount                Decimal @db.Decimal(18, 2)
+
+  status                TransactionStatus @default(PENDING)
+
+  providerTransactionId String?
+  referenceNo           String?
+
+  confirmedByUserId     String?
+
+  note                  String?
+
+  payment               Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  confirmedBy           User? @relation("ConfirmedTransactions", fields: [confirmedByUserId], references: [id], onDelete: SetNull)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([paymentId])
+  @@index([status])
+  @@index([confirmedByUserId])
+
+  @@map("transactions")
+}

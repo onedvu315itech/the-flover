@@ -1,0 +1,31 @@
+model Recipient {
+  id              String @id @default(uuid())
+
+  orderId         String @unique
+
+  sourceAddressId String?
+
+  receiverName    String
+  receiverPhone   String
+
+  wardId          String
+
+  streetAddress   String
+
+  cardMessage     String?
+  note            String?
+
+  order           Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  sourceAddress   UserAddress? @relation("RecipientSourceAddress", fields: [sourceAddressId], references: [id], onDelete: SetNull)
+
+  ward            Ward @relation(fields: [wardId], references: [id])
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([wardId])
+  @@index([sourceAddressId])
+
+  @@map("recipients")
+}
